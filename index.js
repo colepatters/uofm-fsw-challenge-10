@@ -95,8 +95,6 @@ const questions = [
 ]
 
 inqiurer.default.prompt(questions).then((answers) => {
-    console.log(answers)
-
     const shapeColor = colorKeywords[answers.shapeColorKeyword] ?? answers.shapeColorHex
     const textColor = colorKeywords[answers.textColorKeyword] ?? answers.textColorHex
 
