@@ -1,4 +1,5 @@
 const inqiurer = require('inquirer')
+const { Circle } = require('./lib/shapes')
 
 const colorKeywords = {
     "red": "#f54242",
@@ -10,12 +11,6 @@ const colorKeywords = {
     "yellow": "#f5e642",
     "orange": "#f59042",
     "teal": "#42f5d7"
-}
-
-const shapes = {
-    circle: "circle.svg",
-    triangle: "triangle.svg",
-    square: "square.svg"
 }
 
 const welcomeText = `
@@ -71,7 +66,7 @@ const questions = [
         type: "list",
         name: "shape",
         message: "Choose a shape.",
-        choices: Object.keys(shapes)
+        choices: [ "circle", "square", "triangle" ]
     },
     // shape color (keyword or hex)
     {
@@ -100,4 +95,11 @@ const questions = [
 
 inqiurer.default.prompt(questions).then((answers) => {
     console.log(answers)
+
+    const shapeColor = colorKeywords[answers.shapeColorKeyword] ?? answers.shapeColorHex
+    const textColor = colorKeywords[answers.textColorKeyword] ?? answers.textColorHex
+
+    if (answers.shape === "circle") {
+        const circle = new Circle(shapeColor, answers.text, textColor)
+    }
 })
