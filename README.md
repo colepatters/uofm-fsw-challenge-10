@@ -10,6 +10,10 @@ A simple command-line tool that will help you quickly create an SVG logo.
 
 ![image](https://github.com/colepatters/uofm-fsw-challenge-10/blob/main/demo.gif?raw=true)
 
+## Sample Logo
+
+![image](https://github.com/colepatters/uofm-fsw-challenge-10/blob/main/sample.svg?raw=true)
+
 ## Installation
 
 No special instructions required. Just clone 'n run!
