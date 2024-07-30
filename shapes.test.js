@@ -1,6 +1,6 @@
 const { Circle, Square, Triangle } = require("./lib/shapes")
 
-describe("Shapes Correctly Saving", () => {
+describe("Shapes Correctly Rendering", () => {
     test("Circle", () => {
         // new circle with red background and blue text
         const circle = new Circle("#eb4034", "abc", "#345eeb")
@@ -30,5 +30,17 @@ describe("Shapes Correctly Saving", () => {
                 <text x="32" y="65" font-size="25" fill="#345eeb">asd</text>
             </svg>
         `.trim())
+    })
+})
+
+describe("Required Criteria Tests", () => {
+    test("Set Shape Color", () => {
+        const shape = new Triangle()
+        shape.setColor("blue")
+        expect(shape.render().trim()).toEqual(`
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="50,10 20,75 80,75" fill="blue" />
+                <text x="32" y="65" font-size="25" fill=""></text>
+            </svg>`.trim())
     })
 })
