@@ -1,5 +1,6 @@
 const inqiurer = require('inquirer')
-const { Circle } = require('./lib/shapes')
+const { Circle, Square, Triangle } = require('./lib/shapes')
+const { writeFile } = require("fs/promises")
 
 const colorKeywords = {
     "red": "#f54242",
@@ -100,6 +101,12 @@ inqiurer.default.prompt(questions).then((answers) => {
     const textColor = colorKeywords[answers.textColorKeyword] ?? answers.textColorHex
 
     if (answers.shape === "circle") {
-        const circle = new Circle(shapeColor, answers.text, textColor)
+        return new Circle(shapeColor, answers.text, textColor).render()
+    } else if (answers.shape === "square") {
+        return new Square(shapeColor, answers.text, textColor).render()
+    } else {
+        return new Triangle(shapeColor, answers.text, textColor).render()
     }
+}).then((svg) => writeFile("logo.svg", svg)).then(() => {
+    console.log(`Success! You can find your file at ${__dirname}/logo.svg`)
 })
